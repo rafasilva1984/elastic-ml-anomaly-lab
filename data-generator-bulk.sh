@@ -6,7 +6,7 @@ ES_URL="http://localhost:9200"
 USER="elastic"
 PASS="changeme"
 DOCS=100000
-BATCH_SIZE=1000   # Tamanho do bulk
+BATCH_SIZE=10000  # Tamanho do bulk
 TMP_BULK="$(mktemp)"
 RESP_FILE="$(mktemp)"
 
