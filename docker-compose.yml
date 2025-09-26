@@ -6,7 +6,7 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=true
-      - xpack.security.http.ssl.enabled=false
+      - xpack.security.http.ssl.enabled=false   # HTTP puro no 9200
       - ELASTIC_PASSWORD=changeme
       - indices.memory.index_buffer_size=20%
     ports:
@@ -30,18 +30,14 @@ services:
       - elasticsearch
 
   seeder:
-    image: alpine:3.20
+    image: python:3.12-slim
     container_name: seeder-ml-lab
-    # monta o diretório local dentro do container
+    working_dir: /work
     volumes:
       - ./:/work
-    working_dir: /work
-    # instala curl/bash/grep e roda o script bulk dentro do container (sem Git Bash do host)
     command: >
       sh -lc "
-        apk add --no-cache curl bash grep coreutils >/dev/null &&
-        chmod +x /work/data-generator-bulk.sh &&
-        /work/data-generator-bulk.sh
+        python /work/seed.py
       "
     depends_on:
       - elasticsearch
