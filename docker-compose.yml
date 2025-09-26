@@ -21,8 +21,8 @@ services:
     container_name: kibana-ml-lab
     environment:
       - ELASTICSEARCH_HOSTS=["http://elasticsearch:9200"]
-      - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=changeme
+      - ELASTICSEARCH_USERNAME=kibana
+      - ELASTICSEARCH_PASSWORD=OZZCxSVB4SDf5gkT2PGz
     ports:
       - "5601:5601"
     depends_on:
