@@ -6,7 +6,7 @@ services:
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=true
-      - xpack.security.http.ssl.enabled=false   # HTTP puro no 9200
+      - xpack.security.http.ssl.enabled=false   # HTTP puro no 9200 (LAB)
       - ELASTIC_PASSWORD=changeme
       - indices.memory.index_buffer_size=20%
     ports:
@@ -22,8 +22,12 @@ services:
     container_name: kibana-ml-lab
     environment:
       - ELASTICSEARCH_HOSTS=["http://elasticsearch:9200"]
-      - ELASTICSEARCH_USERNAME=kibana
-      - ELASTICSEARCH_PASSWORD=tSQvjYy3UxVcFouDBSru
+      - ELASTICSEARCH_USERNAME=kibana_system
+      - ELASTICSEARCH_PASSWORD=KIBANA_SYS_PASSWORD_AQUI
+      # === Chaves de criptografia (LAB) ===
+      - XPACK_ENCRYPTEDSAVEDOBJECTS_ENCRYPTIONKEY=this_is_a_lab_encryption_key_1234567890
+      - XPACK_SECURITY_ENCRYPTIONKEY=this_is_a_lab_security_key_1234567890
+      - XPACK_REPORTING_ENCRYPTIONKEY=this_is_a_lab_reporting_key_1234567890
     ports:
       - "5601:5601"
     depends_on:
