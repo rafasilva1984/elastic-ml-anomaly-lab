@@ -2,7 +2,7 @@
 set -euo pipefail
 
 INDEX="app-logs-2025-09"
-ES_URL="http://elasticsearch:9200"  # <- IMPORTANTÍSSIMO: usa o nome do serviço do compose
+ES_URL="http://localhost:9200"  # <- IMPORTANTÍSSIMO: usa o nome do serviço do compose
 USER="elastic"
 PASS="changeme"
 DOCS=100000
